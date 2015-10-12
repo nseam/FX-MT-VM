@@ -20,16 +20,16 @@ TO=$YEAR.01.02
 shopt -s globstar
 
 # Check if terminal is present.
-[ "$(find $OUT/**/terminal.exe)" ] || $CWD/dl_mt4.sh
+[ "$(find $OUT/**/terminal.exe)" ] || dl_mt4
 
 # Check if backtest files are present.
-[ "$(find "$OUT" -name \*.fxt)" ] || $CWD/dl_bt_data.sh
+[ "$(find "$OUT" -name \*.fxt)" ] || dl_bt_data
 
 # Download EA.
-$CWD/dl_ea.sh
+dl_ea
 
 # Download set files.
-[ "$(find $OUT -type d -name sets)" ] || $CWD/dl_sets.sh https://github.com/EA31337/EA31337-Sets
+[ "$(find $OUT -type d -name sets)" ] || dl_sets https://github.com/EA31337/EA31337-Sets
 
 # Update configuration.
 [ ! -z "$EXPERT" ]    && ex -s +"%s/^TestExpert=\zs.\+$/$EXPERT/" -cwq $CONF
@@ -58,3 +58,5 @@ export WINEDEBUG=warn+all # For debugging, try: WINEDEBUG=trace+all
 
 # Run terminal.
 wine $OUT/**/terminal.exe config/mt4-tester.ini && html2text $OUT/**/Report.htm
+
+echo Backtest ran.

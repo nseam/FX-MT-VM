@@ -65,6 +65,10 @@ chown -R vagrant:vagrant /opt
 
 # Install VM specific binaries.
 install -v /vagrant/scripts/run_backtest.sh /usr/local/bin/run_backtest
+install -v /vagrant/scripts/dl_ea.sh /usr/local/bin/dl_ea
+install -v /vagrant/scripts/dl_mt4.sh /usr/local/bin/dl_mt4
+install -v /vagrant/scripts/dl_sets.sh /usr/local/bin/dl_sets
+install -v /vagrant/scripts/dl_bt_data.sh /usr/local/bin/dl_bt_data
 
 # Append extra settings into bashrc file.
 ex +':$s@$@\ralias run_backtest=/vagrant/scripts/run_backtest.sh@' -cwq /etc/bash.bashrc
